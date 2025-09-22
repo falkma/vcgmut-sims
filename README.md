@@ -1,8 +1,6 @@
-# Code generated with assistance from Cursor (Claude Sonnet 4)
+# VCG (Virtual Circular Genome) Simulation Framework
 
-# VCG (Virtual Cell Growth) Simulation Framework
-
-A Python framework for simulating PCR-like protocols with oligomer annealing, extension, and melting dynamics on distributed circular genomes. The system models concentration-based kinetics using ODE integration to study mutant allele amplification and stalling effects.
+A Python framework for simulating PCR-like protocols with oligomer annealing, extension, and melting dynamics on distributed circular genomes. The system models concentration-based kinetics using ODE integration to study mutant allele amplification and stalling effects. Code generated with assistance from Cursor (Claude Sonnet 4).
 
 ## Core Components
 
