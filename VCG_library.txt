@@ -1,0 +1,184 @@
+# List of VCGs for validation
+
+# A VCG with 6 strands, 1 mutant.
+
+genome_length = 100
+min_stable_length = 80 # length of duplexes that do not melt
+system = ExtendedOligomerSystem(genome_length)
+
+# Oligo format: (start, end, is_clockwise, concentration (uM), is_duplex,is_mutant = 0 or 1, reactant1_idx, reactant2_idx)
+# (reactant1_idx and reactant2_idx are the indices of the oligomers that form the duplex. Absent for single strands)
+oligomers = [
+    (35, 65, False, 8.0, False,0,None,None),    
+    (35, 65, False, 0.8, False,1,None,None),  # Mutant
+    (25, 55, False, 8.0, False,0,None,None),  # extra WT oligo
+    (10, 45, True, 10.0, False,0,None,None), # binding partner
+    (90, 40, True, 10.0, False,0,None,None), # binding partner
+    (2, 30, True, 10.0, False,0,None,None) # new recruitable partner
+]
+
+# Yoshiya's VCG
+
+genome_length = 100
+min_stable_length = 95 # length of duplexes that do not melt
+system = ExtendedOligomerSystem(genome_length)
+
+# Format: (start, end, is_clockwise, concentration, is_duplex,is_mutant)
+oligomers = [
+    (35, 65, False, 8.0, False,0,None,None), # WT    
+    (35, 65, False, 0.8, False,1,None,None),  # mutant
+    (10, 55, True, 10.0, False,0,None,None), # binding partner
+    (90, 40, True, 10.0, False,0,None,None), # binding partner
+    (60, 80, False, 10.0, False,0,None,None) # new recruitable partner
+]
+
+# VCG of 60 bp, many (15 bp oligos)
+
+genome_length = 60
+min_stable_length = 55  # duplexes that do not melt
+system = ExtendedOligomerSystem(genome_length)
+
+oligo_length=15; shift_oligo=6; misaligned_CW_CCW=5; concentration=10.00
+
+oligomers = system.generate_tiling_oligomers(
+    oligo_length=oligo_length,
+    shift_oligo=shift_oligo,
+    misaligned_CW_CCW=misaligned_CW_CCW,
+    concentration=concentration
+) #+ [(25, 35, True, 1.0, False, 1, None, None)]
+
+# VCG of 60 bp, many (25 bp oligos), 10 bp shift, 5 bp misalignment, 1000x concentration    
+    
+genome_length = 60
+min_stable_length = 55
+system = ExtendedOligomerSystem(genome_length)
+
+oligo_length=25; shift_oligo=10; misaligned_CW_CCW=5; concentration=10.00
+
+oligomers = system.generate_tiling_oligomers(
+    oligo_length=oligo_length,
+    shift_oligo=shift_oligo,
+    misaligned_CW_CCW=misaligned_CW_CCW,
+    concentration=concentration
+) + [(25, 35, True, 1.0, False, 1, None, None)]
+
+# VCG of 100 bp - used for speed tests. 
+
+genome_length = 100
+min_stable_length = 95  # duplexes that do not melt
+system = ExtendedOligomerSystem(genome_length)
+
+oligo_length=15; shift_oligo=6; misaligned_CW_CCW=5; concentration=10.00
+
+oligomers = system.generate_tiling_oligomers(
+    oligo_length=oligo_length,
+    shift_oligo=shift_oligo,
+    misaligned_CW_CCW=misaligned_CW_CCW,
+    concentration=concentration
+) + [(43, 57, True, 1.0, False, 1, None, None)]
+
+# 3 oligos with a mutant
+
+genome_length = 100
+min_stable_length = 95
+system = ExtendedOligomerSystem(genome_length)
+
+# Add a few specific oligomers with unequal concentrations
+# Format: (start, end, is_clockwise, concentration, is_duplex,is_mutant)
+oligomers = [
+    (10, 45, True, 10.0, False,0,None,None),    
+    (35, 65, False, 8.0, False,0,None,None ),    
+    (35, 65, False, 0.8, False,1,None,None),  
+    (55, 80, True, 7.0, False,0,None,None)
+]
+
+# Mutant with multiple partners
+
+genome_length = 100
+min_stable_length = 70 # also try 80
+system = ExtendedOligomerSystem(genome_length)
+
+# Format: (start, end, is_clockwise, concentration, is_duplex,is_mutant)
+oligomers = [
+    (35, 65, False, 8.0, False,0,None,None),    
+    (35, 65, False, 0.8, False,1,None,None),  
+    (10, 45, True, 10.0, False,0,None,None),    
+    (90, 40, True, 10.0, False,0,None,None)
+]
+
+# Two oligos that wrap around the genome
+
+genome_length = 60
+min_stable_length = 55
+system = ExtendedOligomerSystem(genome_length)
+
+# Add a few specific oligomers with unequal concentrations
+# Format: (start, end, is_clockwise, concentration, is_duplex,is_mutant)
+oligomers = [
+    (25, 55, True, 10.0, False,0,None,None),    
+    (35, 10, False, 10.0, False,0,None,None )
+]
+
+# Two oligos that anneal and extend beyond genome length
+
+genome_length = 60
+min_stable_length = 55
+system = ExtendedOligomerSystem(genome_length)
+
+# Add a few specific oligomers with unequal concentrations
+# Format: (start, end, is_clockwise, concentration, is_duplex,is_mutant)
+oligomers = [
+    (25, 55, True, 10.0, False,0,None,None),    
+    (35, 10, False, 10.0, False,0,None,None )
+]
+
+# Oligos to test wrap-around genome, genome length = 60
+
+# Oligo 1 (CW) 3' end at position 10 extending to oligo 2's 5' end at 55
+r1 = (50, 10, True, 10.0, False,0,None,None)    # Clockwise oligo wrapping from 50-59, 0-10
+r2 = (9, 55, False, 10.0, False,0,None,None)    # Counterclockwise oligo wrapping from 9-0, 59-55
+# Extension would make r1 length = 65bp without proper handling
+
+# Oligo 1 (CCW) 3' end at position 55 extending to oligo 2's 5' end at 4
+r1 = (55, 5, False, 10.0, False,0,None,None)    # Counterclockwise oligo wrapping from 55-59, 0-5
+r2 = (4, 58, True, 10.0, False,0,None,None)     # Clockwise oligo from 4 to 58
+# Extension would make r1 length = 62bp without proper handling
+
+# Oligo 2 (CW) 3' end at position 57 extending to oligo 1's 5' end at 10
+r1 = (58, 10, False, 10.0, False,0,None,None)   # Counterclockwise oligo wrapping from 58-59, 0-10
+r2 = (8, 57, True, 10.0, False,0,None,None)     # Clockwise oligo from 8 to 57
+# Extension would make r2 length = 62bp without proper handling
+
+# Oligo 2 (CCW) 3' end at position 54 extending to oligo 1's 5' end at 8
+r1 = (8, 55, True, 10.0, False,0,None,None)     # Clockwise oligo from 8 to 55
+r2 = (54, 10, False, 10.0, False,0,None,None)   # Counterclockwise oligo wrapping from 54-59, 0-10
+# Extension would make r2 length = 62bp without proper handling
+
+# Both oligos will try to extend and both would exceed genome length
+r1 = (50, 5, True, 10.0, False,0,None,None)     # Clockwise oligo wrapping from 50-59, 0-5
+r2 = (4, 51, False, 10.0, False,0,None,None)    # Counterclockwise oligo wrapping from 4-0, 59-51
+# Both would extend beyond genome length without proper handling
+
+# Oligos almost completely cover the genome, and extension would make full circle
+r1 = (1, 45, True, 10.0, False,0,None,None)     # Clockwise oligo covering 1-45
+r2 = (44, 2, False, 10.0, False,0,None,None)    # Counterclockwise oligo covering 44-59, 0-2
+# Extension would make nearly full genome coverage
+
+system = ExtendedOligomerSystem(genome_length=60)
+system.add_oligomer_type(*r1, concentration=1.0)  # Start, end, is_clockwise
+system.add_oligomer_type(*r2, concentration=1.0)
+
+
+# for checking stalling
+oligo_length=25; shift_oligo=5; misaligned_CW_CCW=0; concentration=10.00; global_offset=6;
+
+r1 = [(24, 48, False, 1.0, False, 0, None, None)] 
+r2 = [(6, 30, True, 1.0, False, 1, None, None)]
+
+# for checking stalling
+
+oligo_length=25; shift_oligo=5; misaligned_CW_CCW=0; concentration=10.00; global_offset=10;
+
+r1 = [(24, 42, False, 1.0, False, 0, None, None)] 
+r2 = [(6, 30, True, 1.0, False, 1, None, None)]  
+r3 = [(40, 12, False, 1.0, False, 0, None, None)]   
