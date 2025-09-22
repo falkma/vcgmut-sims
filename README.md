@@ -17,14 +17,14 @@ A Python framework for simulating PCR-like protocols with oligomer annealing, ex
 ## Scripts
 
 ### Parameter Sweep Studies
-- **`stalling_parameter_sweep.py`** - Explores effects of stalling fraction on mutant amplification
-- **`virtualness_parameter_sweep.py`** - Studies shift oligo parameter effects (Fig. 4 A,B,C)
-- **`position_parameter_sweep.py`** - Analyzes global offset parameter effects (Fig. 4 D)
-- **`stalling_parameter_examples.py`** - Example stalling simulations
+- **`stalling_parameter_sweep.py`** - Effect of stalling fraction on mutant amplification. python stalling_parameter_sweep.py to run.
+- **`virtualness_parameter_sweep.py`** - Effect of genome virtualness on mutant amplification. python virtualness_parameter_sweep.py to run.
+- **`position_parameter_sweep.py`** - Effect of initial mutant position on mutant amplification. python position_parameter_sweep.py to run.
+- **`stalling_parameter_examples.py`** - Example stalling simulations. python stalling_parameter_examples.py to run.
 
 ### Analysis Tools
 - **`analyze_mutant_oligos.py`** - Detailed analysis of mutant oligo binding partners and dynamics
-- **`compare_simulations.py`** - Compare final mutant/WT ratios across multiple simulations
+- **`compare_simulations.py`** - Compare final mutant/WT ratios across multiple simulations. python compare_simulations.py to run after modifying simulations of interest.
 - **`vcg_plot_saved_state.py`** - Generate advanced plots from saved simulation states
 
 ### Configuration
@@ -40,7 +40,7 @@ A Python framework for simulating PCR-like protocols with oligomer annealing, ex
 
 ## Output Directories
 
-All functions accept customizable output directories with sensible defaults:
+All functions accept customizable output directories. Defaults as follows:
 
 - `Fig4ABC_plots/` - Virtualness parameter sweep results  
 - `Fig4D_plots/` - Position parameter sweep results
